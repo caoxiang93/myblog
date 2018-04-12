@@ -1,0 +1,39 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block head %}
+    {{ super() }}
+    {% include ['includes/_head.html','includes/_meta.html'] %}
+{% endblock %}
+{% block styles %}  <!-- 重写父模板的styles-->
+    {{ super() }}
+    <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cerulean/bootstrap.min.css">
+{% endblock %}
+{% block navbar %}
+{#    {{ nav.top.render() }}#}
+    {% include 'includes/_navbar.html' %}
+{% endblock navbar %}
+
+{% block content %}
+    {% block header %}
+        <header>
+            <div class="page-header">
+                <div class="container">
+                    <h1>{{ title }}</h1>
+                </div>
+            </div>
+        </header>
+    {% endblock %}
+    {% block page_body %}
+    {% endblock %}
+{% endblock %}
+{#{% for item in items %}#}
+{#    <li>{% block loop_item scoped %}{{ item }}{% endblock %}</li>#}
+{#{% endfor %}#}
+
+{% block footer %}
+    <footer>
+    Copyright 2015 by <a href="ray.dotnetage.com">Ray</a>
+    </footer>
+{% endblock %}
+

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}  <!-- 模板继承 --〉
+{% from "bootstrap/pagination.html" import render_pagination %}
+{% import '_macros.html' as macros%}
+
+{#{% import '_macros.html' as ui %}  <!--引入宏 --〉#}
+<!--
+<h1> {{ title }}</h1>
+
+<nav>
+    <a href="{{ url_for('.services')}}">Service</a>
+    <a href="{{ url_for('.about')}}">About</a>
+</nav>
+<h2>ninhaoa hell</h2>
+-->
+{# {{ title | safe }} #}
+ {# {{ body | md |safe }} #}
+{# {{ read_md('C:\\Users\\cx\\PycharmProjects\\myblog\\hh.md')}} #}
+
+{#{% block title %} {{ title }}{% endblock %}#}
+{#{% block content %}#}
+{#    <div class="page-header">#}
+{#        <div class="container">#}
+{#            <h1>{{ self.title() }}</h1>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="container">#}
+{#        {{ ui.input('username') }}#}
+{#        {{ ui.input('password',type='password' )}}#}
+{#    </div>#}
+{#{%  endblock content %}#}
+
+{% block page_body %}
+    <div class="container">
+        <a href="{{ url_for('main.edit') }}" class="btn btn-primary">发表新文章</a>
+    </div>
+    <div class="container">
+        {% for post in posts %}
+            <h2><a href="{{ url_for('main.post',id = post.id) }}">{{ post.title }}</a> </h2>
+            <div>
+                {{ post.body_html |safe }}
+            </div>
+        {% endfor %}
+
+        {% if pagination %}
+           <div class="pagination">
+               {{ macros.pagination_widget(pagination,'main.index') }}
+           </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
